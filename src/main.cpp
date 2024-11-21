@@ -9,6 +9,7 @@ Support support;
 
 bool running;
 int gameChoice;
+MenuState currentState;
 
 void setup() {
     // Initialisiere Arduino und sonstige Gerätschaften.
@@ -42,27 +43,61 @@ void loop() {
 
 
     support.tftPrintLn(0, 0, ILI9341_WHITE, 2, ILI9341_BLACK, "Wähle Spiel: ");
-    // Hier Spielauswahl implementieren. Auswahl gibt int wert zurück. Siehe switch/case
+    // Hier Spielauswahl implementieren. Auswahl gibt int wert zurück.
 
     while(running){
-        switch(gameChoice){
-            case 1:
-                zyklon.run();
+        switch(currentState){
+            case MAIN_MENU:
+                drawMainMenu();
                 break;
-            case 2:
+            case TENNIS:
                 tennis.run();
                 break;
-            case 3:
+            case ZYKLON:
+                zyklon.run();
+                break;
+            case KATAPULT:
                 catapult.run();
                 break;
-            case 4:
+            case SETTINGS:
                 settings(); // Einstellungen, ruft Funktion auf welche Zugriff auf InputData hat
                 break;
-            case 5:
+            case IMPRESSUM:
                 impressum(); // Impressum, README.MD auf display anzeigen.
                 break;
             default:
                 support.tftPrintLn(0, 0, ILI9341_WHITE, 2, ILI9341_BLACK, "Achtung! Fehlerhafte Eingabe.");
+
+        }
+    }
+}
+
+void checkMenuState(){
+    while (true) {
+        if (Serial.available() > 0) {
+            char choice = Serial.read();    // test
+
+            switch (choice) {
+                case '1':
+                    currentState = MAIN_MENU;
+                    return;
+                case '2':
+                    currentState = TENNIS;
+                    return;
+                case '3':
+                    currentState = ZYKLON;
+                    return;
+                case '4':
+                    currentState = KATAPULT;
+                    return;
+                case '5':
+                    currentState = SETTINGS;
+                    return;
+                case '6':
+                    currentState = IMPRESSUM;
+                    return;
+                default: display.println("Ungültige Auswahl. Bitte erneut versuchen.");
+            };
 
         }
     }

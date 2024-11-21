@@ -107,6 +107,15 @@ enum Difficulty {
     HARD,           ///<    Schwierigkeit Schwer
     TRYHARD         ///<    Schwierigkeit Unmöglich
 };
+// Menü Zustandsmaschine
+enum MenuState {
+    MAIN_MENU,      ///<    Hauptmenü aktiv
+    TENNIS,         ///<    Tennis aktiv
+    ZYKLON,         ///<    Zyklon aktiv
+    KATAPULT,       ///<    Katapult aktiv
+    SETTINGS        ///<    Einstellungen aktiv
+    IMPRESSUM       ///<    Impressum aktiv
+};
 
 //*********************************************************************************//
 //                                  Makros

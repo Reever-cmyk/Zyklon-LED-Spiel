@@ -4,8 +4,6 @@
 
 #include "Support.h"
 
-
-
 //Timer function
 bool Support::checkTimer(Timer& timer) {
     if (millis() - timer.previousMillis >= timer.interval) {
@@ -123,6 +121,9 @@ void drawMainMenu(){
 
 }
 void drawSettings(){
+
+}
+void drawImpressum(){
 
 }
 

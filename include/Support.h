@@ -109,6 +109,4 @@ void Support::tftPrintLn(int x, int y, int textColor, int printSize, int backgro
     display.print(print);
 }
 
-
-
 #endif //LED_SPIEL_LABOR_MESSTECHNIK_SUPPORT_H
