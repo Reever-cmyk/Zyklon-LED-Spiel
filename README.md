@@ -21,16 +21,16 @@ sich im LED Bereich befindet, so erhält der Spieler einen Punkt. Trifft man nic
 beginnt man von vorne.
 
 ### Tennis Modus
-Der Tennis Modus wurde für zwei Spieler konzipiert. Die Spieler nehmen das Gerät zusammen
-in die Hand sodass der linke Spieler den linken und der rechte Spieler den rechten 
-Knopf gut betätigen kann. Die Runde beginnt damit das eine Tennisball LED welche sich 
+Der Tennis-Modus wurde für zwei Spieler konzipiert. Die Spieler nehmen das Gerät zusammen
+in die Hand, sodass der linke Spieler den linken und der rechte Spieler den rechten 
+Knopf gut betätigen kann. Die Runde beginnt damit das eine Tennisball LED, welche sich 
 oben mittig befindet zufällig nach links oder rechts fällt danach erfolgt die 
-etnscheidung über eine bool wer Aufschlag hat. Betätgt ein Spieler seinen Knopf während 
+Entscheidung über eine bool wer Aufschlag hat. Betätigt ein Spieler seinen Knopf während 
 der Ball auf der LED Position des Spielers (festgelegte Punkte links und rechts)so wird
-der Ball zurückgespielt auf dass der Gegenspieler ihn nun treffen muss. Trifft der 
-Spieler nicht so wandert die LED bis zum untersten Punkt des Ringes und derjenige 
-Spieler welcher den Ball gespielt hat erhält einen Punkt. Hat ein Spieler Zwei punkte
-inne so erhält er einen Set Punkt. Wer zuerst 2 Set Punkte gewonnen hat gewinnt das Spiel.
+der Ball zurückgespielt auf, dass der Gegenspieler ihn nun treffen muss. Trifft der 
+Spieler nicht, so wandert die LED bis zum untersten Punkt des Ringes und derjenige 
+Spieler, welcher den Ball gespielt hat, erhält einen Punkt. Hat ein Spieler, Zwei punkte
+inne so erhält er einen Set-Punkt. Wer zuerst 2 Set-Punkte gewonnen hat, gewinnt das Spiel.
 
 ### Katapult Modus
 Beim Katapult Modus geht es darum den Knopf eine gewisse Weile gedrückt zuhalten. Die dauer
