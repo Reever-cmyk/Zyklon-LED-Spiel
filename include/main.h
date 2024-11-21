@@ -54,12 +54,13 @@
 //                                  Include
 //*********************************************************************************//
 
-#include "Arduino.h"            ///<    Arduino Grundfkt. wie Serial, pinMode, ...
-#include <vector>               ///<    Verwendung von cpp Vektoren
-#include <Adafruit_GFX.h>       ///<    Diverse Grafikfunktionen wird von Neopixel/ILI9341 benötigt.
-#include "Adafruit_NeoPixel.h"  ///<    Steuerung des LED Rings
-#include "Adafruit_ILI9341.h"   ///<    Steuerung des TFT Displays
-#include "SD.h"                 ///<    Nutzung der SD Karte
+#include "Arduino.h"                ///<    Arduino Grundfkt. wie Serial, pinMode, ...
+#include <vector>                   ///<    Verwendung von cpp Vektoren
+#include <Adafruit_GFX.h>           ///<    Diverse Grafikfunktionen wird von Neopixel/ILI9341 benötigt.
+#include "Adafruit_NeoPixel.h"      ///<    Steuerung des LED Rings
+#include "Adafruit_ILI9341.h"       ///<    Steuerung des TFT Displays
+#include "SD.h"                     ///<    Nutzung der SD Karte
+#include "XPT2046_Touchscreen.h"    ///<    Nutzung des Touch Displays
 
 #include "Zyklon.h"
 #include "Tennis.h"
@@ -148,6 +149,7 @@ int speed;  ///< Spielgeschwindigkeit
 
 Adafruit_NeoPixel LED(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_ILI9341 display = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
+XPT2046_Touchscreen touch(T_CS, T_IRQ);
 
 InputData data = {"ZZ", 0, 10, false};  ///< Globaler Speicher der Scores, Initialen und Eingaben.
 

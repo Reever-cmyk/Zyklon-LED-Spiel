@@ -118,4 +118,11 @@ InputData Support::readHighScore(const char* filename) {
     return data;
 }
 
+//Menu functions
+void drawMainMenu(){
+
+}
+void drawSettings(){
+
+}
 
