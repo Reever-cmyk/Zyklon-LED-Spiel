@@ -109,12 +109,14 @@ enum Difficulty {
 };
 // Menü Zustandsmaschine
 enum MenuState {
-    MAIN_MENU,      ///<    Hauptmenü aktiv
-    TENNIS,         ///<    Tennis aktiv
-    ZYKLON,         ///<    Zyklon aktiv
-    KATAPULT,       ///<    Katapult aktiv
-    SETTINGS        ///<    Einstellungen aktiv
-    IMPRESSUM       ///<    Impressum aktiv
+    MAIN_MENU,       ///<    Hauptmenü aktiv
+    TENNIS,          ///<    Tennis aktiv
+    ZYKLON,          ///<    Zyklon aktiv
+    KATAPULT,        ///<    Katapult aktiv
+    SETTINGS,        ///<    Einstellungen aktiv
+    SETTINGS_INPUT   ///<    Zur eingabe der Einstellungs werte
+    IMPRESSUM,       ///<    Impressum aktiv
+    INITIALS         ///<    Für Initialen abfrage
 };
 
 //*********************************************************************************//
@@ -151,6 +153,8 @@ int currentScore;   ///<    Derzeitige Punktzahl
 int animationInterval = 20; ///<    Globale Animations Verzögerung
 
 int speed;  ///< Spielgeschwindigkeit
+
+std::vector<UIElement> uiElements;  //  Globale Liste aller angezeigter Elemente
 
 //*********************************************************************************//
 //                              Objekt instanziierung

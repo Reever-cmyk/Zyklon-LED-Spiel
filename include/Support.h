@@ -88,10 +88,20 @@ public:
      */
     template <typename T>
     void tftPrintLn(int16_t x, int16_t y, int16_t textColor, int16_t printSize, int16_t backgroundColor, T print);
+    void drawMainMenu();
+    void drawSettings();
+    void drawImpressum();
+    /*!
+     * @brief           vergibt MENU_STATE anhand des betätigten UI elements
+     * @param element   Zur übergabe der Element.id
+     * @return          setzt MENU_STATE
+     */
+    MenuState checkMenuState(const UIElement& element);
+
+    String readWordFromSerial();    // testweise
 
 private:
     UIElement element;                  // Objekt eines Elements
-    std::vector<UIElement> uiElements;  // Vektor der UI Elemente
     String elementId;                   // String mit ID eines Elements
 
 

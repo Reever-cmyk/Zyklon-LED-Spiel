@@ -6,13 +6,10 @@ Tennis tennis;
 Catapult catapult;
 Initialise initialise;
 Support support;
-
-bool running;
-int gameChoice;
 MenuState currentState;
 
 void setup() {
-    // Initialisiere Arduino und sonstige Gerätschaften.
+    // Initialisiere Arduino und sonstige Peripherie Geräte.
     initialise.TFT();
     initialise.Pins();
     initialise.LEDS();
@@ -21,13 +18,19 @@ void setup() {
     InputData highScoreData = support.readHighScore("scores.txt");  // Lese scores aus datei aus
     randomSeed(analogRead(0));  // generiere den randomSeed aus dem Messwert des Pin 0
 
-    running = true;
-
     display.println("Setup done.");
-    display.fillScreen(ILI9341_BLACK);  // Lösche display
+    display.fillScreen(ILI9341_BLACK);  // leere display
+
+    currentState = MAIN_MENU;
 }
 
 void loop() {
+    /*!
+     * loop ablauf
+     * 1. Touch Abfrage
+     * 2. Derzeitiger system stand abfragen
+     * 3. gefragtes system öffnen
+     */
 
     // Touch Abfrage
     if (touch.touched()) {
@@ -38,67 +41,42 @@ void loop() {
     } else {
         touchDetected = false;
     }
-//************************************************************************************************************************//
-//                                                  TEST
 
-
-    support.tftPrintLn(0, 0, ILI9341_WHITE, 2, ILI9341_BLACK, "Wähle Spiel: ");
-    // Hier Spielauswahl implementieren. Auswahl gibt int wert zurück.
-
-    while(running){
-        switch(currentState){
+    currentState = support.checkMenuState();    // derzeitiger system stand
+        switch(currentState){                   // öffne gewünschtes system
             case MAIN_MENU:
-                drawMainMenu();
+                uiElements.clear();             // uiElements liste leeren
+                support.drawMainMenu();
                 break;
-            case TENNIS:
-                tennis.run();
-                break;
-            case ZYKLON:
-                zyklon.run();
-                break;
-            case KATAPULT:
-                catapult.run();
-                break;
-            case SETTINGS:
-                settings(); // Einstellungen, ruft Funktion auf welche Zugriff auf InputData hat
-                break;
-            case IMPRESSUM:
-                impressum(); // Impressum, README.MD auf display anzeigen.
-                break;
-            default:
-                support.tftPrintLn(0, 0, ILI9341_WHITE, 2, ILI9341_BLACK, "Achtung! Fehlerhafte Eingabe.");
-
-        }
-    }
-}
-
-void checkMenuState(){
-    while (true) {
-        if (Serial.available() > 0) {
-            char choice = Serial.read();    // test
-
-            switch (choice) {
-                case '1':
-                    currentState = MAIN_MENU;
-                    return;
-                case '2':
-                    currentState = TENNIS;
-                    return;
-                case '3':
-                    currentState = ZYKLON;
-                    return;
-                case '4':
-                    currentState = KATAPULT;
-                    return;
-                case '5':
-                    currentState = SETTINGS;
-                    return;
-                case '6':
-                    currentState = IMPRESSUM;
-                    return;
-                default: display.println("Ungültige Auswahl. Bitte erneut versuchen.");
+                case TENNIS:
+                    uiElements.clear();
+                    tennis.run();
+                    break;
+                case ZYKLON:
+                    uiElements.clear();
+                    zyklon.run();
+                    break;
+                case KATAPULT:
+                    uiElements.clear();
+                    catapult.run();
+                    break;
+                case SETTINGS:
+                    uiElements.clear();
+                    support.drawSettings();
+                    break;
+                case IMPRESSUM:
+                    uiElements.clear();
+                    support.drawImpressum(); // Impressum, README.MD auf display anzeigen.
+                    break;
+                default:
+                    support.tftPrintLn(0, 0, ILI9341_WHITE, 2, ILI9341_BLACK, "Achtung! Menü Fehler.");
             };
 
-        }
-    }
+
+
 }
+
+
+
+
+

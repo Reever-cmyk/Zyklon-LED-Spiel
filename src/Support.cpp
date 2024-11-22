@@ -118,12 +118,63 @@ InputData Support::readHighScore(const char* filename) {
 
 //Menu functions
 void drawMainMenu(){
+    Support support;
+    display.println("main menu");
+    support.addUIElement(0, 0, display.width(), 40, "Hauptmenü");
 
 }
 void drawSettings(){
-
+    Support support;
+    display.println("settings");
+    support.addUIElement(0, 0, display.width(), 40, "Hauptmenü");
 }
 void drawImpressum(){
+    Support support;
+    display.println("impressum");
+    support.addUIElement(0, 0, display.width(), 40, "Hauptmenü");
 
 }
+MenuState checkMenuState(const UIElement& element){
+    MenuState currentState;
+    if(element.id == "Hauptmenü"){
+        currentState = MAIN_MENU;
+        return currentState;
+    }else if(element.id == "Einstellungen"){
+        currentState = SETTINGS;
+        return currentState;
+    }else if(element.id == "IMPRESSUM"){
+        currentState = IMPRESSUM;
+        return currentState;
+    }else if(element.id == "Zyklon"){
+        currentState = ZYKLON;
+        return currentState;
+    }else if(element.id == "Tennis"){
+        currentState = TENNIS;
+        return currentState;
+    }else if(element.id == "Katapult"){
+        currentState = KATAPULT;
+        return currentState;
+    }else if(element.id == "Initialen"){
+        currentState = INITIALS;
+        return currentState;
+    }else if(element.id == "Einstellungen ändern"){
+        currentState = SETTINGS_INPUT;
+        return currentState;
+    }
 
+    return currentState = MAIN_MENU;    // Error handling
+}
+
+String readWordFromSerial() {
+    String input = "";
+    while (true) {
+        if (Serial.available() > 0) {
+            char c = Serial.read();
+            if (c == ' ' || c == '\n' || c == '\r') {
+                break; // Beende Lesen bei Leerzeichen oder Zeilenumbruch
+            }
+            input += c;
+        }
+    }
+    return input;
+}
